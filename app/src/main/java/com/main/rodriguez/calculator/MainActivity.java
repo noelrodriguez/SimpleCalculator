@@ -49,5 +49,6 @@ public class MainActivity extends AppCompatActivity {
             userInput.setText("0");
             clear.setText("AC");
         }
+        // This is a test to see if any differences were actually pushed
     }
 }
