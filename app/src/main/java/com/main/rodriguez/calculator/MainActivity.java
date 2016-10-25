@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.StringTokenizer;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -45,10 +47,57 @@ public class MainActivity extends AppCompatActivity {
     public void clearInput(View view) {
         TextView userInput = (TextView)findViewById(R.id.textView1);
         Button clear = (Button)findViewById(R.id.button11);
-        if (userInput.toString() != null) {
+        if (userInput.getText() != null) {
             userInput.setText("0");
             clear.setText("AC");
         }
-        // This is a test to see if any differences were actually pushed
+    }
+
+    public void addInput(View view) {
+        // Variables
+        TextView userInput = (TextView)findViewById(R.id.textView1);
+        Button input = (Button)findViewById(view.getId());
+        Button clear = (Button)findViewById(R.id.button11);
+
+        // Enable any previously disabled operators
+        enableOperators();
+
+        // Check to see if open parenthesis was inserted
+        if ("^/*-+()".indexOf(input.getText().charAt(input.getText().length()-1)) != -1){
+            disableOperators();
+        }
+
+        if (userInput.length() == 1 && userInput.getText().toString().equals("0")){
+            userInput.setText(input.getText());
+            clear.setText("C");
+        } else {
+            userInput.append(input.getText());
+        }
+    }
+
+    public void disableOperators() {
+        findViewById(R.id.button13).setEnabled(false);
+        findViewById(R.id.button14).setEnabled(false);
+        findViewById(R.id.button15).setEnabled(false);
+        findViewById(R.id.button16).setEnabled(false);
+        findViewById(R.id.button17).setEnabled(false);
+        findViewById(R.id.button18).setEnabled(false);
+    }
+
+    public void enableOperators() {
+        findViewById(R.id.button13).setEnabled(true);
+        findViewById(R.id.button14).setEnabled(true);
+        findViewById(R.id.button15).setEnabled(true);
+        findViewById(R.id.button16).setEnabled(true);
+        findViewById(R.id.button17).setEnabled(true);
+        findViewById(R.id.button18).setEnabled(true);
+    }
+
+    public void compute(View view) {
+        TextView input = (TextView)findViewById(R.id.textView1);
+        StringTokenizer stringTokenizer = new StringTokenizer(input.getText().toString(),"^/*-+()",true);
+        String[] tokens = new String[stringTokenizer.countTokens()];
+        for (String i : tokens)
+            System.out.print(i);
     }
 }

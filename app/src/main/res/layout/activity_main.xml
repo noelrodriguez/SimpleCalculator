@@ -58,13 +58,14 @@
                 android:textSize="25dp" />
 
             <Button
-                android:text="%"
+                android:text="^"
                 android:id="@+id/button13"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/top_column"
                 android:layout_weight="1"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:onClick="addInput" />
 
             <Button
                 android:text="/"
@@ -74,7 +75,8 @@
                 android:layout_height="match_parent"
                 android:textColor="#FFFFFF"
                 android:background="@drawable/right_column"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:onClick="addInput" />
         </LinearLayout>
 
         <LinearLayout
@@ -91,7 +93,8 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
                 android:layout_weight="1"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:onClick="addInput" />
 
             <Button
                 android:text="8"
@@ -100,7 +103,8 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
                 android:layout_weight="1"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:onClick="addInput" />
 
             <Button
                 android:text="9"
@@ -109,17 +113,19 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
                 android:layout_weight="1"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:onClick="addInput" />
 
             <Button
-                android:text="X"
+                android:text="*"
                 android:id="@+id/button15"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:textColor="#FFFFFF"
                 android:background="@drawable/right_column"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:onClick="addInput" />
         </LinearLayout>
 
         <LinearLayout
@@ -136,7 +142,8 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
                 android:layout_weight="1"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:onClick="addInput" />
 
             <Button
                 android:text="5"
@@ -145,7 +152,8 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
                 android:layout_weight="1"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:onClick="addInput" />
 
             <Button
                 android:text="6"
@@ -154,7 +162,8 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
                 android:layout_weight="1"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:onClick="addInput" />
 
             <Button
                 android:text="-"
@@ -164,7 +173,8 @@
                 android:layout_weight="1"
                 android:textColor="#FFFFFF"
                 android:background="@drawable/right_column"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:onClick="addInput" />
 
         </LinearLayout>
 
@@ -182,7 +192,8 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
                 android:layout_weight="1"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:onClick="addInput"/>
 
             <Button
                 android:text="2"
@@ -191,7 +202,8 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
                 android:layout_weight="1"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:onClick="addInput" />
 
             <Button
                 android:text="3"
@@ -200,7 +212,8 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
                 android:layout_weight="1"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:onClick="addInput" />
 
             <Button
                 android:text="+"
@@ -210,7 +223,8 @@
                 android:layout_weight="1"
                 android:textColor="#FFFFFF"
                 android:background="@drawable/right_column"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:onClick="addInput" />
         </LinearLayout>
 
         <LinearLayout
@@ -221,22 +235,34 @@
             android:background="#000000">
 
             <Button
+                android:text="("
+                android:id="@+id/button19"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/numbers"
+                android:layout_weight="1"
+                android:textSize="25dp"
+                android:onClick="addInput" />
+
+            <Button
                 android:text="0"
                 android:id="@+id/button0"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
-                android:layout_weight="2"
-                android:textSize="25dp" />
+                android:layout_weight="1"
+                android:textSize="25dp"
+                android:onClick="addInput" />
 
             <Button
-                android:text="."
+                android:text=")"
                 android:id="@+id/button10"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
                 android:layout_weight="1"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:onClick="addInput" />
 
             <Button
                 android:text="="
@@ -246,7 +272,8 @@
                 android:layout_weight="1"
                 android:textColor="#FFFFFF"
                 android:background="@drawable/right_column"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:onClick="compute" />
         </LinearLayout>
     </LinearLayout>
 
