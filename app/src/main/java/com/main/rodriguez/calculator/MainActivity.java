@@ -12,14 +12,27 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.Hashtable;
+import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class MainActivity extends AppCompatActivity {
+
+    Hashtable<String, Integer> mostPrecendence = new Hashtable<>();
+    Stack operators = new Stack();
+    Stack values = new Stack();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Set most precendence operators
+        mostPrecendence.put("+",0);
+        mostPrecendence.put("-",0);
+        mostPrecendence.put("*",1);
+        mostPrecendence.put("/",1);
+        mostPrecendence.put("^",2);
     }
 
     @Override
@@ -96,8 +109,34 @@ public class MainActivity extends AppCompatActivity {
     public void compute(View view) {
         TextView input = (TextView)findViewById(R.id.textView1);
         StringTokenizer stringTokenizer = new StringTokenizer(input.getText().toString(),"^/*-+()",true);
-        String[] tokens = new String[stringTokenizer.countTokens()];
-        for (String i : tokens)
-            System.out.print(i);
+        String nextElement;
+
+        while (stringTokenizer.hasMoreTokens()){
+            nextElement = stringTokenizer.nextToken();
+            if (isDigit(nextElement)){
+                values.push(nextElement);
+            } else if ("^/*-+(".indexOf(nextElement) != -1){
+                operators.push(nextElement);
+            } else if (nextElement.equals("(")){
+
+            }
+        }
+    }
+
+    public boolean isDigit(String input) {
+        try {
+            Double.parseDouble(input);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    // My testing equation is 3+9*(10-(5+2))-10/2=25
+    public boolean checkPrecedence(String input) {
+        if (mostPrecendence.get(operators.peek().toString()) > mostPrecendence.get(input)){
+
+        }
+        return false;
     }
 }
