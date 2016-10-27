@@ -19,15 +19,16 @@ import java.util.StringTokenizer;
 public class MainActivity extends AppCompatActivity {
 
     Hashtable<String, Integer> mostPrecendence = new Hashtable<>();
-    Stack operators = new Stack();
-    Stack values = new Stack();
+    Stack<String> operators = new Stack();
+    Stack<Double> values = new Stack();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Set most precendence operators
+        // Set most precedence operators
+        mostPrecendence.put("(",0);
         mostPrecendence.put("+",0);
         mostPrecendence.put("-",0);
         mostPrecendence.put("*",1);
@@ -58,17 +59,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clearInput(View view) {
-        TextView userInput = (TextView)findViewById(R.id.textView1);
+        TextView fullInput = (TextView)findViewById(R.id.textView1);
         Button clear = (Button)findViewById(R.id.button11);
-        if (userInput.getText() != null) {
-            userInput.setText("0");
+        if (fullInput.getText() != null) {
+            fullInput.setText("0");
             clear.setText("AC");
         }
     }
 
     public void addInput(View view) {
         // Variables
-        TextView userInput = (TextView)findViewById(R.id.textView1);
+        TextView fullInput = (TextView)findViewById(R.id.textView1);
         Button input = (Button)findViewById(view.getId());
         Button clear = (Button)findViewById(R.id.button11);
 
@@ -76,27 +77,34 @@ public class MainActivity extends AppCompatActivity {
         enableOperators();
 
         // Check to see if open parenthesis was inserted
-        if ("^/*-+()".indexOf(input.getText().charAt(input.getText().length()-1)) != -1){
+        /*if ("^/*-+()".indexOf(input.getText().charAt(input.getText().length()-1)) != -1){
             disableOperators();
-        }
+        }*/
 
-        if (userInput.length() == 1 && userInput.getText().toString().equals("0")){
-            userInput.setText(input.getText());
+        // If first input, will set clear button to C and set text to the input
+        // Else, appends the input
+        if (fullInput.length() == 1 && fullInput.getText().toString().equals("0")){
+            fullInput.setText(input.getText());
             clear.setText("C");
         } else {
-            userInput.append(input.getText());
+            fullInput.append(input.getText());
         }
     }
 
+    public void restrictingOperators(String input) {
+
+    }
+
+    // Disables corresponding operators
     public void disableOperators() {
         findViewById(R.id.button13).setEnabled(false);
         findViewById(R.id.button14).setEnabled(false);
         findViewById(R.id.button15).setEnabled(false);
         findViewById(R.id.button16).setEnabled(false);
         findViewById(R.id.button17).setEnabled(false);
-        findViewById(R.id.button18).setEnabled(false);
     }
 
+    // Enables corresponding operators
     public void enableOperators() {
         findViewById(R.id.button13).setEnabled(true);
         findViewById(R.id.button14).setEnabled(true);
@@ -106,23 +114,59 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.button18).setEnabled(true);
     }
 
+    // Computes the finalized input while checking for precedence of operators
     public void compute(View view) {
+        // Variables
         TextView input = (TextView)findViewById(R.id.textView1);
         StringTokenizer stringTokenizer = new StringTokenizer(input.getText().toString(),"^/*-+()",true);
         String nextElement;
+        String curOperator;
+        double value1, value2;
 
         while (stringTokenizer.hasMoreTokens()){
             nextElement = stringTokenizer.nextToken();
-            if (isDigit(nextElement)){
-                values.push(nextElement);
-            } else if ("^/*-+(".indexOf(nextElement) != -1){
-                operators.push(nextElement);
-            } else if (nextElement.equals("(")){
-
+            // If next token is an operator
+            if ("+-*/^()".indexOf(nextElement) != -1){
+                // If operator is left-parenthesis push to stack
+                // (is of precedence 0 since any precedence operator can follow a parenthesis)
+                if (nextElement.equals("(")){
+                    operators.push(nextElement);
+                // If operator is right-parenthesis peek and pop until reach left-parenthesis
+                // (reason why left-parenthesis can have precedence of 0)
+                } else if (nextElement.equals(")")){
+                    while (!operators.peek().equals("(")){
+                        curOperator = operators.pop();
+                        value2 = values.pop();
+                        value1 = values.pop();
+                        values.push(mathCalculation(curOperator,value1,value2));
+                    }
+                    operators.pop();
+                // If operator already in stack has higher precedence
+                } else if (checkPrecedence(nextElement)){
+                    curOperator = operators.pop();
+                    value2 = values.pop();
+                    value1 = values.pop();
+                    values.push(mathCalculation(curOperator,value1,value2));
+                    operators.push(nextElement);
+                // Else operator on stack must have lower precedence
+                } else {
+                    operators.push(nextElement);
+                }
+            // Else next token must be a value
+            } else {
+                values.push(Double.parseDouble(nextElement));
             }
         }
+        while (!operators.isEmpty()) {
+            curOperator = operators.pop();
+            value2 = values.pop();
+            value1 = values.pop();
+            values.push(mathCalculation(curOperator, value1, value2));
+        }
+        input.setText(String.format("%.2f",values.pop()));
     }
 
+    // Technically don't need this since if not operator, must be value
     public boolean isDigit(String input) {
         try {
             Double.parseDouble(input);
@@ -133,10 +177,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // My testing equation is 3+9*(10-(5+2))-10/2=25
+    // Checks precedence of operator currently on stack to determine to push or not
     public boolean checkPrecedence(String input) {
-        if (mostPrecendence.get(operators.peek().toString()) > mostPrecendence.get(input)){
-
+        if (operators.isEmpty()) {
+            return false;
+        } else if (mostPrecendence.get(operators.peek()) > mostPrecendence.get(input)){
+            return true;
         }
         return false;
+    }
+
+    // Does the actual mathematical calculation based on the operator
+    public double mathCalculation(String operator, double val1, double val2) {
+        double total;
+        switch (operator) {
+            case "+":
+                total = val1+val2;
+                break;
+            case "-":
+                total = val1-val2;
+                break;
+            case "*":
+                total = val1*val2;
+                break;
+            case "/":
+                total = val1/val2;
+                break;
+            case "^":
+                total = Math.pow(val1,val2);
+                break;
+            default:
+                total = 0;
+                break;
+        }
+        return total;
     }
 }

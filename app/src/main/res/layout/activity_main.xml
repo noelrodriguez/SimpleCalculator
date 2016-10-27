@@ -21,14 +21,15 @@
             <TextView
                 android:text="1234453215"
                 android:id="@+id/textView1"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center_vertical|right"
-                android:textSize="45dp"
+                android:gravity="center_vertical|end"
+                android:textSize="45sp"
                 android:background="@drawable/input"
                 android:textColor="#FFFFFF"
-                android:paddingRight="10dp"/>
+                android:paddingRight="10dp"
+                android:maxLines="1"/>
         </LinearLayout>
 
         <LinearLayout
@@ -45,7 +46,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/top_column"
                 android:layout_weight="1"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:onClick="clearInput"/>
 
             <Button
@@ -55,7 +56,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/top_column"
                 android:layout_weight="1"
-                android:textSize="25dp" />
+                android:textSize="25sp" />
 
             <Button
                 android:text="^"
@@ -64,7 +65,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/top_column"
                 android:layout_weight="1"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:onClick="addInput" />
 
             <Button
@@ -75,7 +76,7 @@
                 android:layout_height="match_parent"
                 android:textColor="#FFFFFF"
                 android:background="@drawable/right_column"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:onClick="addInput" />
         </LinearLayout>
 
@@ -93,7 +94,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
                 android:layout_weight="1"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:onClick="addInput" />
 
             <Button
@@ -103,7 +104,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
                 android:layout_weight="1"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:onClick="addInput" />
 
             <Button
@@ -113,7 +114,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
                 android:layout_weight="1"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:onClick="addInput" />
 
             <Button
@@ -124,7 +125,7 @@
                 android:layout_weight="1"
                 android:textColor="#FFFFFF"
                 android:background="@drawable/right_column"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:onClick="addInput" />
         </LinearLayout>
 
@@ -142,7 +143,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
                 android:layout_weight="1"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:onClick="addInput" />
 
             <Button
@@ -152,7 +153,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
                 android:layout_weight="1"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:onClick="addInput" />
 
             <Button
@@ -162,7 +163,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
                 android:layout_weight="1"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:onClick="addInput" />
 
             <Button
@@ -173,7 +174,7 @@
                 android:layout_weight="1"
                 android:textColor="#FFFFFF"
                 android:background="@drawable/right_column"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:onClick="addInput" />
 
         </LinearLayout>
@@ -192,7 +193,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
                 android:layout_weight="1"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:onClick="addInput"/>
 
             <Button
@@ -202,7 +203,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
                 android:layout_weight="1"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:onClick="addInput" />
 
             <Button
@@ -212,7 +213,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
                 android:layout_weight="1"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:onClick="addInput" />
 
             <Button
@@ -223,7 +224,7 @@
                 android:layout_weight="1"
                 android:textColor="#FFFFFF"
                 android:background="@drawable/right_column"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:onClick="addInput" />
         </LinearLayout>
 
@@ -241,7 +242,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
                 android:layout_weight="1"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:onClick="addInput" />
 
             <Button
@@ -251,7 +252,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
                 android:layout_weight="1"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:onClick="addInput" />
 
             <Button
@@ -261,7 +262,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
                 android:layout_weight="1"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:onClick="addInput" />
 
             <Button
@@ -272,7 +273,7 @@
                 android:layout_weight="1"
                 android:textColor="#FFFFFF"
                 android:background="@drawable/right_column"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:onClick="compute" />
         </LinearLayout>
     </LinearLayout>
