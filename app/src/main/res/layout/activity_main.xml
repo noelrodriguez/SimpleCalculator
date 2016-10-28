@@ -16,10 +16,10 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="25">
+            android:layout_weight="20">
 
             <TextView
-                android:text="1234453215"
+                android:text="0"
                 android:id="@+id/textView1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -36,31 +36,72 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="15"
+            android:layout_weight="10"
             android:background="#000000">
 
             <Button
-                android:text="C"
+                android:text="AC"
                 android:id="@+id/button11"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/top_column"
+                android:layout_weight="2"
+                android:textSize="25sp"
+                android:onClick="clearInput"/>
+
+
+            <Button
+                android:text="Del"
+                android:id="@+id/button21"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/top_column"
+                android:layout_weight="1"
+                android:textSize="25sp"
+                android:onClick="deleteInput" />
+
+            <Button
+                android:text="^"
+                android:id="@+id/button13"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/right_column"
+                android:textSize="25sp"
+                android:onClick="addInput" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:background="#000000">
+
+            <Button
+                android:text="("
+                android:id="@+id/button19"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/top_column"
                 android:layout_weight="1"
                 android:textSize="25sp"
-                android:onClick="clearInput"/>
+                android:onClick="addInput" />
 
             <Button
-                android:text="+/-"
-                android:id="@+id/button12"
+                android:text=")"
+                android:id="@+id/button10"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/top_column"
                 android:layout_weight="1"
-                android:textSize="25sp" />
+                android:textSize="25sp"
+                android:onClick="addInput" />
 
             <Button
-                android:text="^"
-                android:id="@+id/button13"
+                android:text="-"
+                android:id="@+id/button12"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/top_column"
@@ -84,7 +125,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="15"
+            android:layout_weight="10"
             android:background="#000000">
 
             <Button
@@ -133,7 +174,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="15"
+            android:layout_weight="10"
             android:background="#000000">
 
             <Button
@@ -167,7 +208,7 @@
                 android:onClick="addInput" />
 
             <Button
-                android:text="-"
+                android:text="\u2212"
                 android:id="@+id/button16"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -183,7 +224,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="15"
+            android:layout_weight="10"
             android:background="#000000">
 
             <Button
@@ -232,18 +273,8 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="15"
+            android:layout_weight="10"
             android:background="#000000">
-
-            <Button
-                android:text="("
-                android:id="@+id/button19"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/numbers"
-                android:layout_weight="1"
-                android:textSize="25sp"
-                android:onClick="addInput" />
 
             <Button
                 android:text="0"
@@ -251,17 +282,17 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:textSize="25sp"
                 android:onClick="addInput" />
 
             <Button
-                android:text=")"
-                android:id="@+id/button10"
+                android:text="."
+                android:id="@+id/button20"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:background="@drawable/numbers"
                 android:layout_weight="1"
+                android:background="@drawable/numbers"
                 android:textSize="25sp"
                 android:onClick="addInput" />
 
