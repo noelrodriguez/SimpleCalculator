@@ -1,18 +1,13 @@
 package com.main.rodriguez.calculator;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.ToggleButton;
-
+import java.text.DecimalFormat;
 import java.util.Hashtable;
 import java.util.Stack;
 import java.util.StringTokenizer;
@@ -20,10 +15,9 @@ import java.util.StringTokenizer;
 public class MainActivity extends AppCompatActivity {
 
     Hashtable<String, Integer> mostPrecendence = new Hashtable<>();
-    Stack<String> operators = new Stack();
-    Stack<Double> values = new Stack();
+    Stack<String> operators = new Stack<>();
+    Stack<Double> values = new Stack<>();
     boolean clearFlag = true;
-    boolean totalFlag = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,11 +86,6 @@ public class MainActivity extends AppCompatActivity {
         Button input = (Button)findViewById(view.getId());
         Button clear = (Button)findViewById(R.id.button11);
 
-        // Enable any previously disabled operators
-        enableOperators();
-
-        // Disabling operators to prevent incorrect insertion
-
         // If first input, will set clear button to C and set text to the input
         // Else, appends the input
         if (clearFlag){
@@ -108,87 +97,71 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void restrictingOperators(String input) {
-
-    }
-
-    // Disables corresponding operators
-    public void disableOperators() {
-        findViewById(R.id.button13).setEnabled(false);
-        findViewById(R.id.button14).setEnabled(false);
-        findViewById(R.id.button15).setEnabled(false);
-        findViewById(R.id.button16).setEnabled(false);
-        findViewById(R.id.button17).setEnabled(false);
-    }
-
-    // Enables corresponding operators
-    public void enableOperators() {
-        findViewById(R.id.button13).setEnabled(true);
-        findViewById(R.id.button14).setEnabled(true);
-        findViewById(R.id.button15).setEnabled(true);
-        findViewById(R.id.button16).setEnabled(true);
-        findViewById(R.id.button17).setEnabled(true);
-        findViewById(R.id.button18).setEnabled(true);
-    }
-
     // Computes the finalized input while checking for precedence of operators
     public void compute(View view) {
         // Variables
         TextView input = (TextView)findViewById(R.id.textView1);
         StringTokenizer stringTokenizer = new StringTokenizer(input.getText().toString(),"^/*\u2212+()",true);
+        DecimalFormat formatter = new DecimalFormat("#,###.00");
         String nextElement;
         String curOperator;
         double value1, value2;
 
-        while (stringTokenizer.hasMoreTokens()){
-            nextElement = stringTokenizer.nextToken();
-            // If next token is an operator
-            if ("+\u2212*/^()".indexOf(nextElement) != -1){
-                // If operator is left-parenthesis push to stack
-                // (is of precedence 0 since any precedence operator can follow a parenthesis)
-                if (nextElement.equals("(")){
-                    operators.push(nextElement);
-                // If operator is right-parenthesis peek and pop until reach left-parenthesis
-                // (reason why left-parenthesis can have precedence of 0)
-                } else if (nextElement.equals(")")){
-                    while (!operators.peek().equals("(")){
+        try {
+            while (stringTokenizer.hasMoreTokens()) {
+                nextElement = stringTokenizer.nextToken();
+                // If next token is an operator
+                if ("+\u2212*/^()".indexOf(nextElement) != -1) {
+                    // If operator is left-parenthesis push to stack
+                    // (is of precedence 0 since any precedence operator can follow a parenthesis)
+                    if (nextElement.equals("(")) {
+                        operators.push(nextElement);
+                        // If operator is right-parenthesis peek and pop until reach left-parenthesis
+                        // (reason why left-parenthesis can have precedence of 0)
+                    } else if (nextElement.equals(")")) {
+                        while (!operators.peek().equals("(")) {
+                            curOperator = operators.pop();
+                            value2 = values.pop();
+                            value1 = values.pop();
+                            values.push(mathCalculation(curOperator, value1, value2));
+                        }
+                        operators.pop();
+                        // If operator already in stack has higher precedence
+                    } else if (checkPrecedence(nextElement)) {
                         curOperator = operators.pop();
                         value2 = values.pop();
                         value1 = values.pop();
-                        values.push(mathCalculation(curOperator,value1,value2));
+                        values.push(mathCalculation(curOperator, value1, value2));
+                        operators.push(nextElement);
+                        // Else operator on stack must have lower precedence
+                    } else {
+                        operators.push(nextElement);
                     }
-                    operators.pop();
-                // If operator already in stack has higher precedence
-                } else if (checkPrecedence(nextElement)){
+                    // Else next token must be a value
+                } else {
+                    // Determines if negative sign was inserted to negate value
+                    if ("-".indexOf(nextElement) != -1) {
+                        values.push(Double.parseDouble(nextElement) * -1);
+                    } else {
+                        values.push(Double.parseDouble(nextElement));
+                    }
+                }
+            }
+            // Makes sure that if they don't enter any operators it just spits value back out
+            if (!operators.isEmpty()) {
+                while (!operators.isEmpty()) {
                     curOperator = operators.pop();
                     value2 = values.pop();
                     value1 = values.pop();
-                    values.push(mathCalculation(curOperator,value1,value2));
-                    operators.push(nextElement);
-                // Else operator on stack must have lower precedence
-                } else {
-                    operators.push(nextElement);
-                }
-            // Else next token must be a value
-            } else {
-                // Determines if negative sign was inserted to negate value
-                if ("-".indexOf(nextElement) != -1) {
-                    values.push(Double.parseDouble(nextElement)*-1);
-                } else {
-                    values.push(Double.parseDouble(nextElement));
+                    values.push(mathCalculation(curOperator, value1, value2));
                 }
             }
+            input.setText(formatter.format(values.pop()));
+        // Catch any exception
+        // Since math is correct, only exceptions being thrown will come from incorrect input
+        } catch (Exception e){
+            input.setText("Incorrect Input");
         }
-        // Makes sure that if they don't enter any operators it just spits value back out
-        if (!operators.isEmpty()) {
-            while (!operators.isEmpty()) {
-                curOperator = operators.pop();
-                value2 = values.pop();
-                value1 = values.pop();
-                values.push(mathCalculation(curOperator, value1, value2));
-            }
-        }
-        input.setText(String.format("%.2f",values.pop()));
     }
 
     // Checks precedence of operator currently on stack to determine to push or not
@@ -208,19 +181,19 @@ public class MainActivity extends AppCompatActivity {
         double total;
         switch (operator) {
             case "+":
-                total = val1+val2;
+                total = val1 + val2;
                 break;
             case "\u2212":
-                total = val1-val2;
+                total = val1 - val2;
                 break;
             case "*":
-                total = val1*val2;
+                total = val1 * val2;
                 break;
             case "/":
-                total = val1/val2;
+                total = val1 / val2;
                 break;
             case "^":
-                total = Math.pow(val1,val2);
+                total = Math.pow(val1, val2);
                 break;
             default:
                 total = 0;
