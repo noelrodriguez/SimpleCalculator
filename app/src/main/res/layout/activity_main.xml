@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -19,7 +18,7 @@
             android:layout_weight="20">
 
             <TextView
-                android:text="0"
+                android:text="@string/inputText"
                 android:id="@+id/textView1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -28,7 +27,8 @@
                 android:textSize="45sp"
                 android:background="@drawable/input"
                 android:textColor="#FFFFFF"
-                android:paddingRight="10dp"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
                 android:maxLines="1"/>
         </LinearLayout>
 
@@ -40,7 +40,7 @@
             android:background="#000000">
 
             <Button
-                android:text="AC"
+                android:text="@string/allClear"
                 android:id="@+id/button11"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -51,7 +51,7 @@
 
 
             <Button
-                android:text="Del"
+                android:text="@string/delete"
                 android:id="@+id/button21"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -61,7 +61,7 @@
                 android:onClick="deleteInput" />
 
             <Button
-                android:text="^"
+                android:text="@string/opPower"
                 android:id="@+id/button13"
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -80,7 +80,7 @@
             android:background="#000000">
 
             <Button
-                android:text="("
+                android:text="@string/opLeftParenthesis"
                 android:id="@+id/button19"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -90,7 +90,7 @@
                 android:onClick="addInput" />
 
             <Button
-                android:text=")"
+                android:text="@string/opRightParenthesis"
                 android:id="@+id/button10"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -100,7 +100,7 @@
                 android:onClick="addInput" />
 
             <Button
-                android:text="-"
+                android:text="@string/opNegative"
                 android:id="@+id/button12"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -110,7 +110,7 @@
                 android:onClick="addInput" />
 
             <Button
-                android:text="/"
+                android:text="@string/opDivision"
                 android:id="@+id/button14"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
@@ -129,7 +129,7 @@
             android:background="#000000">
 
             <Button
-                android:text="7"
+                android:text="@string/num7"
                 android:id="@+id/button7"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -139,7 +139,7 @@
                 android:onClick="addInput" />
 
             <Button
-                android:text="8"
+                android:text="@string/num8"
                 android:id="@+id/button8"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -149,7 +149,7 @@
                 android:onClick="addInput" />
 
             <Button
-                android:text="9"
+                android:text="@string/num9"
                 android:id="@+id/button9"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -159,7 +159,7 @@
                 android:onClick="addInput" />
 
             <Button
-                android:text="*"
+                android:text="@string/opMultiplication"
                 android:id="@+id/button15"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -178,7 +178,7 @@
             android:background="#000000">
 
             <Button
-                android:text="4"
+                android:text="@string/num4"
                 android:id="@+id/button4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -188,7 +188,7 @@
                 android:onClick="addInput" />
 
             <Button
-                android:text="5"
+                android:text="@string/num5"
                 android:id="@+id/button5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -198,7 +198,7 @@
                 android:onClick="addInput" />
 
             <Button
-                android:text="6"
+                android:text="@string/num6"
                 android:id="@+id/button6"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -208,7 +208,7 @@
                 android:onClick="addInput" />
 
             <Button
-                android:text="\u2212"
+                android:text="@string/opMinus"
                 android:id="@+id/button16"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -228,7 +228,7 @@
             android:background="#000000">
 
             <Button
-                android:text="1"
+                android:text="@string/num1"
                 android:id="@+id/button1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -238,7 +238,7 @@
                 android:onClick="addInput"/>
 
             <Button
-                android:text="2"
+                android:text="@string/num2"
                 android:id="@+id/button2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -248,7 +248,7 @@
                 android:onClick="addInput" />
 
             <Button
-                android:text="3"
+                android:text="@string/num3"
                 android:id="@+id/button3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -258,7 +258,7 @@
                 android:onClick="addInput" />
 
             <Button
-                android:text="+"
+                android:text="@string/opPlus"
                 android:id="@+id/button17"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -277,7 +277,7 @@
             android:background="#000000">
 
             <Button
-                android:text="0"
+                android:text="@string/num0"
                 android:id="@+id/button0"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -287,7 +287,7 @@
                 android:onClick="addInput" />
 
             <Button
-                android:text="."
+                android:text="@string/decimalPoint"
                 android:id="@+id/button20"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -297,7 +297,7 @@
                 android:onClick="addInput" />
 
             <Button
-                android:text="="
+                android:text="@string/total"
                 android:id="@+id/button18"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -309,4 +309,4 @@
         </LinearLayout>
     </LinearLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+</android.support.design.widget.AppBarLayout>

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import java.text.DecimalFormat;
 import java.util.Hashtable;
+import java.util.Locale;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         Button clear = (Button)findViewById(R.id.button11);
         if (fullInput.getText() != null) {
             fullInput.setText("0");
-            clear.setText("AC");
+            clear.setText(R.string.allClear);
             clearFlag = true;
         }
     }
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             fullInput.setText(fullInput.getText().subSequence(0,fullInput.getText().length()-1));
         } else if (fullInput.getText().length() == 1){
             fullInput.setText("0");
-            clear.setText("AC");
+            clear.setText(R.string.allClear);
             clearFlag = true;
         }
     }
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         // Else, appends the input
         if (clearFlag){
             fullInput.setText(input.getText());
-            clear.setText("C");
+            clear.setText(R.string.clear);
             clearFlag = false;
         } else {
             fullInput.append(input.getText());
@@ -156,11 +157,12 @@ public class MainActivity extends AppCompatActivity {
                     values.push(mathCalculation(curOperator, value1, value2));
                 }
             }
-            input.setText(formatter.format(values.pop()));
+            //input.setText(formatter.format(values.pop()));
+            input.setText(String.format(Locale.getDefault(),"%,.2f", values.pop()));
         // Catch any exception
         // Since math is correct, only exceptions being thrown will come from incorrect input
         } catch (Exception e){
-            input.setText("Incorrect Input");
+            input.setText(R.string.invalidInput);
         }
     }
 
