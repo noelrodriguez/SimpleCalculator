@@ -26,12 +26,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Set most precedence operators
-        mostPrecedence.put("(",0);
-        mostPrecedence.put("+",0);
-        mostPrecedence.put("\u2212",0);
-        mostPrecedence.put("*",1);
-        mostPrecedence.put("/",1);
-        mostPrecedence.put("^",2);
+        mostPrecedence.put(getResources().getString(R.string.opLeftParenthesis),0);
+        mostPrecedence.put(getResources().getString(R.string.opPlus),0);
+        mostPrecedence.put(getResources().getString(R.string.opMinus),0);
+        mostPrecedence.put(getResources().getString(R.string.opMultiplication),1);
+        mostPrecedence.put(getResources().getString(R.string.opDivision),1);
+        mostPrecedence.put(getResources().getString(R.string.opPower),2);
     }
 
     @Override
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
     public void compute(View view) {
         // Variables
         TextView input = (TextView)findViewById(R.id.inputTextView);
-        StringTokenizer stringTokenizer = new StringTokenizer(input.getText().toString(),"^/*\u2212+()",true);
+        StringTokenizer stringTokenizer = new StringTokenizer(input.getText().toString(),getResources().getString(R.string.operators),true);
         String nextElement;
         String curOperator;
         double value1, value2;
@@ -111,15 +111,15 @@ public class MainActivity extends AppCompatActivity {
             while (stringTokenizer.hasMoreTokens()) {
                 nextElement = stringTokenizer.nextToken();
                 // If next token is an operator
-                if ("+\u2212*/^()".indexOf(nextElement) != -1) {
+                if (getResources().getString(R.string.operators).indexOf(nextElement) != -1) {
                     // If operator is left-parenthesis push to stack
                     // (is of precedence 0 since any precedence operator can follow a parenthesis)
-                    if (nextElement.equals("(")) {
+                    if (nextElement.equals(getResources().getString(R.string.opLeftParenthesis))) {
                         operators.push(nextElement);
                         // If operator is right-parenthesis peek and pop until reach left-parenthesis
                         // (reason why left-parenthesis can have precedence of 0)
-                    } else if (nextElement.equals(")")) {
-                        while (!operators.peek().equals("(")) {
+                    } else if (nextElement.equals(getResources().getString(R.string.opRightParenthesis))) {
+                        while (!operators.peek().equals(getResources().getString(R.string.opLeftParenthesis))) {
                             curOperator = operators.pop();
                             value2 = values.pop();
                             value1 = values.pop();
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                     // Else next token must be a value
                 } else {
                     // Determines if negative sign was inserted to negate value
-                    if ("-".indexOf(nextElement) != -1) {
+                    if (getResources().getString(R.string.opNegative).indexOf(nextElement) != -1) {
                         values.push(Double.parseDouble(nextElement) * -1);
                     } else {
                         values.push(Double.parseDouble(nextElement));
@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean checkPrecedence(String input) {
         if (operators.isEmpty()) {
             return false;
-        } else if (operators.peek().equals("(")){
+        } else if (operators.peek().equals(getResources().getString(R.string.opLeftParenthesis))){
             return false;
         } else if (mostPrecedence.get(operators.peek()) >= mostPrecedence.get(input)){
             return true;
