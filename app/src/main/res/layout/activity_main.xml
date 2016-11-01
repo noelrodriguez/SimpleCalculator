@@ -19,7 +19,7 @@
 
             <TextView
                 android:text="@string/inputText"
-                android:id="@+id/textView1"
+                android:id="@+id/inputTextView"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -41,7 +41,7 @@
 
             <Button
                 android:text="@string/allClear"
-                android:id="@+id/button11"
+                android:id="@+id/clearButton"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/top_column"
@@ -52,7 +52,7 @@
 
             <Button
                 android:text="@string/delete"
-                android:id="@+id/button21"
+                android:id="@+id/delButton"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/top_column"
@@ -62,7 +62,7 @@
 
             <Button
                 android:text="@string/opPower"
-                android:id="@+id/button13"
+                android:id="@+id/powerButton"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
@@ -81,7 +81,7 @@
 
             <Button
                 android:text="@string/opLeftParenthesis"
-                android:id="@+id/button19"
+                android:id="@+id/leftParenthesisButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/top_column"
@@ -91,7 +91,7 @@
 
             <Button
                 android:text="@string/opRightParenthesis"
-                android:id="@+id/button10"
+                android:id="@+id/rightParenthesisButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/top_column"
@@ -101,7 +101,7 @@
 
             <Button
                 android:text="@string/opNegative"
-                android:id="@+id/button12"
+                android:id="@+id/negativeButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/top_column"
@@ -111,7 +111,7 @@
 
             <Button
                 android:text="@string/opDivision"
-                android:id="@+id/button14"
+                android:id="@+id/divisionButton"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
@@ -130,7 +130,7 @@
 
             <Button
                 android:text="@string/num7"
-                android:id="@+id/button7"
+                android:id="@+id/num7Button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
@@ -140,7 +140,7 @@
 
             <Button
                 android:text="@string/num8"
-                android:id="@+id/button8"
+                android:id="@+id/num8Button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
@@ -150,7 +150,7 @@
 
             <Button
                 android:text="@string/num9"
-                android:id="@+id/button9"
+                android:id="@+id/num9Button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
@@ -160,7 +160,7 @@
 
             <Button
                 android:text="@string/opMultiplication"
-                android:id="@+id/button15"
+                android:id="@+id/multiplicationButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -179,7 +179,7 @@
 
             <Button
                 android:text="@string/num4"
-                android:id="@+id/button4"
+                android:id="@+id/num4Button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
@@ -189,7 +189,7 @@
 
             <Button
                 android:text="@string/num5"
-                android:id="@+id/button5"
+                android:id="@+id/num5Button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
@@ -199,7 +199,7 @@
 
             <Button
                 android:text="@string/num6"
-                android:id="@+id/button6"
+                android:id="@+id/num6Button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
@@ -209,7 +209,7 @@
 
             <Button
                 android:text="@string/opMinus"
-                android:id="@+id/button16"
+                android:id="@+id/minusButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -229,7 +229,7 @@
 
             <Button
                 android:text="@string/num1"
-                android:id="@+id/button1"
+                android:id="@+id/num1Button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
@@ -239,7 +239,7 @@
 
             <Button
                 android:text="@string/num2"
-                android:id="@+id/button2"
+                android:id="@+id/num2Button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
@@ -249,7 +249,7 @@
 
             <Button
                 android:text="@string/num3"
-                android:id="@+id/button3"
+                android:id="@+id/num3Button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
@@ -259,7 +259,7 @@
 
             <Button
                 android:text="@string/opPlus"
-                android:id="@+id/button17"
+                android:id="@+id/plusButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -278,7 +278,7 @@
 
             <Button
                 android:text="@string/num0"
-                android:id="@+id/button0"
+                android:id="@+id/num0Button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/numbers"
@@ -288,7 +288,7 @@
 
             <Button
                 android:text="@string/decimalPoint"
-                android:id="@+id/button20"
+                android:id="@+id/decimalButton"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -298,7 +298,7 @@
 
             <Button
                 android:text="@string/total"
-                android:id="@+id/button18"
+                android:id="@+id/totalButton"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

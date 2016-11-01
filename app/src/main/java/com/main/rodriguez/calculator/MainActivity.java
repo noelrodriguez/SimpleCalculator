@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
-import java.text.DecimalFormat;
 import java.util.Hashtable;
 import java.util.Locale;
 import java.util.Stack;
@@ -15,7 +14,8 @@ import java.util.StringTokenizer;
 
 public class MainActivity extends AppCompatActivity {
 
-    Hashtable<String, Integer> mostPrecendence = new Hashtable<>();
+    // Variables
+    Hashtable<String, Integer> mostPrecedence = new Hashtable<>();
     Stack<String> operators = new Stack<>();
     Stack<Double> values = new Stack<>();
     boolean clearFlag = true;
@@ -26,12 +26,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Set most precedence operators
-        mostPrecendence.put("(",0);
-        mostPrecendence.put("+",0);
-        mostPrecendence.put("\u2212",0);
-        mostPrecendence.put("*",1);
-        mostPrecendence.put("/",1);
-        mostPrecendence.put("^",2);
+        mostPrecedence.put("(",0);
+        mostPrecedence.put("+",0);
+        mostPrecedence.put("\u2212",0);
+        mostPrecedence.put("*",1);
+        mostPrecedence.put("/",1);
+        mostPrecedence.put("^",2);
     }
 
     @Override
@@ -57,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clearInput(View view) {
-        TextView fullInput = (TextView)findViewById(R.id.textView1);
-        Button clear = (Button)findViewById(R.id.button11);
+        TextView fullInput = (TextView)findViewById(R.id.inputTextView);
+        Button clear = (Button)findViewById(R.id.clearButton);
         if (fullInput.getText() != null) {
             fullInput.setText("0");
             clear.setText(R.string.allClear);
@@ -67,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void deleteInput(View view) {
-        TextView fullInput = (TextView)findViewById(R.id.textView1);
-        Button clear = (Button)findViewById(R.id.button11);
+        TextView fullInput = (TextView)findViewById(R.id.inputTextView);
+        Button clear = (Button)findViewById(R.id.clearButton);
 
         if (!clearFlag && fullInput.getText().length() > 1){
             fullInput.setText(fullInput.getText().subSequence(0,fullInput.getText().length()-1));
@@ -83,9 +83,9 @@ public class MainActivity extends AppCompatActivity {
     // and 9+(2*6-1)
     public void addInput(View view) {
         // Variables
-        TextView fullInput = (TextView)findViewById(R.id.textView1);
+        TextView fullInput = (TextView)findViewById(R.id.inputTextView);
         Button input = (Button)findViewById(view.getId());
-        Button clear = (Button)findViewById(R.id.button11);
+        Button clear = (Button)findViewById(R.id.clearButton);
 
         // If first input, will set clear button to C and set text to the input
         // Else, appends the input
@@ -101,9 +101,8 @@ public class MainActivity extends AppCompatActivity {
     // Computes the finalized input while checking for precedence of operators
     public void compute(View view) {
         // Variables
-        TextView input = (TextView)findViewById(R.id.textView1);
+        TextView input = (TextView)findViewById(R.id.inputTextView);
         StringTokenizer stringTokenizer = new StringTokenizer(input.getText().toString(),"^/*\u2212+()",true);
-        DecimalFormat formatter = new DecimalFormat("#,###.00");
         String nextElement;
         String curOperator;
         double value1, value2;
@@ -157,7 +156,6 @@ public class MainActivity extends AppCompatActivity {
                     values.push(mathCalculation(curOperator, value1, value2));
                 }
             }
-            //input.setText(formatter.format(values.pop()));
             input.setText(String.format(Locale.getDefault(),"%,.2f", values.pop()));
         // Catch any exception
         // Since math is correct, only exceptions being thrown will come from incorrect input
@@ -172,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
             return false;
         } else if (operators.peek().equals("(")){
             return false;
-        } else if (mostPrecendence.get(operators.peek()) >= mostPrecendence.get(input)){
+        } else if (mostPrecedence.get(operators.peek()) >= mostPrecedence.get(input)){
             return true;
         }
         return false;
