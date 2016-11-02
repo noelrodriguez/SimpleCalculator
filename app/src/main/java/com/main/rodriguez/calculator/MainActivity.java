@@ -70,12 +70,12 @@ public class MainActivity extends AppCompatActivity {
         TextView fullInput = (TextView)findViewById(R.id.inputTextView);
         Button clear = (Button)findViewById(R.id.clearButton);
 
-        if (!clearFlag && fullInput.getText().length() > 1){
-            fullInput.setText(fullInput.getText().subSequence(0,fullInput.getText().length()-1));
-        } else if (fullInput.getText().length() == 1){
+        if (fullInput.getText().length() == 1 || fullInput.getText().toString().matches("[a-zA-Z\\s]+")){
             fullInput.setText("0");
             clear.setText(R.string.allClear);
             clearFlag = true;
+        } else if (!clearFlag && fullInput.getText().length() > 1){
+            fullInput.setText(fullInput.getText().subSequence(0,fullInput.getText().length()-1));
         }
     }
 
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
         // If first input, will set clear button to C and set text to the input
         // Else, appends the input
-        if (clearFlag){
+        if (clearFlag || fullInput.getText().toString().matches("[a-zA-Z\\s]+")){
             fullInput.setText(input.getText());
             clear.setText(R.string.clear);
             clearFlag = false;
