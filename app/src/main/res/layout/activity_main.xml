@@ -24,12 +24,12 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical|end"
-                android:textSize="45sp"
+                android:textSize="35sp"
                 android:background="@drawable/input"
                 android:textColor="#FFFFFF"
                 android:paddingEnd="10dp"
                 android:paddingStart="10dp"
-                android:maxLines="1"/>
+                android:maxLines="3"/>
         </LinearLayout>
 
         <LinearLayout
