@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
                     values.push(mathCalculation(curOperator, value1, value2));
                 }
             }
-            input.setText(String.format(Locale.getDefault(),"%,.2f", values.pop()));
+            input.setText(String.format(Locale.getDefault(),"%.2f", values.pop()));
         // Catch any exception
         // Since math is correct, only exceptions being thrown will come from incorrect input
         } catch (Exception e){
